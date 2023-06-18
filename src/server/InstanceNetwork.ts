@@ -28,9 +28,10 @@ class InstanceNetwork {
       user.network = this;
     } catch (e) {
       console.log(
-        "error in onCommand. ignoring as its likely the stupid hacker",
+        "error in onCommand. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -43,9 +44,10 @@ class InstanceNetwork {
       });
     } catch (e) {
       console.log(
-        "error in onCommand. ignoring as its likely the stupid hacker",
+        "error in onCommand. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -123,9 +125,10 @@ class InstanceNetwork {
       }
     } catch (e) {
       console.log(
-        "error in onHandshake. ignoring as its likely the stupid hacker",
+        "error in onHandshake. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -189,9 +192,10 @@ class InstanceNetwork {
       }
     } catch (e) {
       console.log(
-        "error in onMessage. ignoring as its likely the stupid hacker",
+        "error in onMessage. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -208,9 +212,10 @@ class InstanceNetwork {
       });
     } catch (e) {
       console.log(
-        "error in onConnectionAccepted. ignoring as its likely the stupid hacker",
+        "error in onConnectionAccepted. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -223,9 +228,10 @@ class InstanceNetwork {
       });
     } catch (e) {
       console.log(
-        "error in onConnectionDenied. ignoring as its likely the stupid hacker",
+        "error in onConnectionDenied. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 
@@ -241,9 +247,10 @@ class InstanceNetwork {
       user.connectionState = UserConnectionState.Closed;
     } catch (e) {
       console.log(
-        "error in onClose. ignoring as its likely the stupid hacker",
+        "error in onClose. ignoring as its likely the stupid hacker. disconnecting them",
         e
       );
+      user.disconnect("invalid");
     }
   }
 }
