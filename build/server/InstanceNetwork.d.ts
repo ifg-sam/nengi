@@ -1,7 +1,7 @@
 /// <reference types="node" />
-import { Instance } from './Instance';
-import { NetworkEvent } from '../common/binary/NetworkEvent';
-import { User } from './User';
+import { Instance } from "./Instance";
+import { NetworkEvent } from "../common/binary/NetworkEvent";
+import { User } from "./User";
 interface INetworkEvent {
     type: NetworkEvent;
     user: User;
