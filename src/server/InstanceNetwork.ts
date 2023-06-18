@@ -186,6 +186,7 @@ class InstanceNetwork {
             console.log(
               "network hit default case while reading; likely the hacker"
             );
+            user.disconnect("invalid");
             break;
           }
         }
