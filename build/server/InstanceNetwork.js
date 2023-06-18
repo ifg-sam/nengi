@@ -32,7 +32,8 @@ class InstanceNetwork {
             user.network = this;
         }
         catch (e) {
-            console.log("error in onCommand. ignoring as its likely the stupid hacker", e);
+            console.log("error in onCommand. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
     onCommand(user, command) {
@@ -44,7 +45,8 @@ class InstanceNetwork {
             });
         }
         catch (e) {
-            console.log("error in onCommand. ignoring as its likely the stupid hacker", e);
+            console.log("error in onCommand. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
     onHandshake(user, handshake) {
@@ -108,7 +110,8 @@ class InstanceNetwork {
                 }
             }
             catch (e) {
-                console.log("error in onHandshake. ignoring as its likely the stupid hacker", e);
+                console.log("error in onHandshake. ignoring as its likely the stupid hacker. disconnecting them", e);
+                user.disconnect("invalid");
             }
         });
     }
@@ -160,13 +163,15 @@ class InstanceNetwork {
                     }
                     default: {
                         console.log("network hit default case while reading; likely the hacker");
+                        user.disconnect("invalid");
                         break;
                     }
                 }
             }
         }
         catch (e) {
-            console.log("error in onMessage. ignoring as its likely the stupid hacker", e);
+            console.log("error in onMessage. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
     onConnectionAccepted(user, payload) {
@@ -181,7 +186,8 @@ class InstanceNetwork {
             });
         }
         catch (e) {
-            console.log("error in onConnectionAccepted. ignoring as its likely the stupid hacker", e);
+            console.log("error in onConnectionAccepted. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
     onConnectionDenied(user, payload) {
@@ -193,7 +199,8 @@ class InstanceNetwork {
             });
         }
         catch (e) {
-            console.log("error in onConnectionDenied. ignoring as its likely the stupid hacker", e);
+            console.log("error in onConnectionDenied. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
     onClose(user) {
@@ -208,7 +215,8 @@ class InstanceNetwork {
             user.connectionState = User_1.UserConnectionState.Closed;
         }
         catch (e) {
-            console.log("error in onClose. ignoring as its likely the stupid hacker", e);
+            console.log("error in onClose. ignoring as its likely the stupid hacker. disconnecting them", e);
+            user.disconnect("invalid");
         }
     }
 }
