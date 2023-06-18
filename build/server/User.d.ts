@@ -1,8 +1,8 @@
 /// <reference types="node" />
-import IChannel from './IChannel';
-import { Instance } from './Instance';
-import { InstanceNetwork } from './InstanceNetwork';
-import { IServerNetworkAdapter } from './adapter/IServerNetworkAdapter';
+import IChannel from "./IChannel";
+import { Instance } from "./Instance";
+import { InstanceNetwork } from "./InstanceNetwork";
+import { IServerNetworkAdapter } from "./adapter/IServerNetworkAdapter";
 declare enum UserConnectionState {
     NULL = 0,
     OpenPreHandshake = 1,

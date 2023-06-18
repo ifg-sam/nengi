@@ -7,7 +7,7 @@ var UserConnectionState;
     UserConnectionState[UserConnectionState["OpenPreHandshake"] = 1] = "OpenPreHandshake";
     UserConnectionState[UserConnectionState["OpenAwaitingHandshake"] = 2] = "OpenAwaitingHandshake";
     UserConnectionState[UserConnectionState["Open"] = 3] = "Open";
-    UserConnectionState[UserConnectionState["Closed"] = 4] = "Closed"; // closed, network.send would crash if invoked
+    UserConnectionState[UserConnectionState["Closed"] = 4] = "Closed";
 })(UserConnectionState || (UserConnectionState = {}));
 exports.UserConnectionState = UserConnectionState;
 class User {
@@ -51,21 +51,26 @@ class User {
         }
         const children = this.instance.localState.parents.get(id);
         if (children) {
-            children.forEach(id => this.createOrUpdate(id, tick, toCreate, toUpdate));
+            children.forEach((id) => this.createOrUpdate(id, tick, toCreate, toUpdate));
         }
     }
     send(buffer) {
         this.networkAdapter.send(this, buffer);
     }
     disconnect(reason) {
-        this.networkAdapter.disconnect(this, reason);
+        try {
+            this.networkAdapter.disconnect(this, reason);
+        }
+        catch (e) {
+            console.log("error in disconnect. ignoring as its likely the stupid hacker", e);
+        }
     }
     checkVisibility(tick) {
         const toCreate = [];
         const toUpdate = [];
         const toDelete = [];
-        this.subscriptions.forEach(channel => {
-            channel.getVisible(this.id).forEach(nid => {
+        this.subscriptions.forEach((channel) => {
+            channel.getVisible(this.id).forEach((nid) => {
                 this.createOrUpdate(nid, tick, toCreate, toUpdate);
             });
         });
@@ -83,7 +88,7 @@ class User {
             //events: nearby.events,
             noLongerVisible: toDelete,
             stillVisible: toUpdate,
-            newlyVisible: toCreate //diffs.bOnly
+            newlyVisible: toCreate, //diffs.bOnly
         };
     }
 }
